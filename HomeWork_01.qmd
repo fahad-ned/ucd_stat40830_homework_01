@@ -1,0 +1,83 @@
+---
+title: "Homework 1"
+author: "Fahad Nawaz | 23201736"
+date: today
+date-format: long
+format:
+  html:
+    code-fold: true
+    code-tools: true
+    code-line-numbers: true
+    fontsize: 1.2em
+    toc: true
+    toc-title: '**Contents**'
+    embed-resources: true
+    grid:
+      body-width: 800px
+    theme: 
+      - superhero
+  revealjs: 
+    slide-number: true
+    html-math-method: mathjax
+    theme: [default, custom-theme.css]
+    footer: ""
+    incremental: false
+    fragments: true
+    chalkboard: false
+    menu: true
+    scrollable: true
+    preview-links: false
+    embed-resources: false
+    standalone: false       
+execute: 
+  eval: true
+  echo: true
+---
+
+# Exploring the Diamonds Dataset
+
+## Introduction
+
+The **`diamonds`** dataset, available in the *ggplot2* package, comprises detailed information on over 50,000 diamonds, including their prices and physical attributes. This analysis investigates the relationship between carat (a measure of weight) and price, utilizing a scatter plot to visually assess underlying patterns and potential trends in the data.
+
+---
+
+## Descriptive Statistics
+
+Below are the summary statistics for the two key variables examined in this analysis:
+
+```{r, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(dplyr)
+# Display summary statistics of carat and price columns
+summary(select(diamonds, carat, price))
+```
+
+### Comments
+
+- Most diamonds are small, with a median weight of 0.7 carats.
+- The average price is $3,933, but the median is lower at $2,401, indicating a right-skewed distribution.
+- Prices range widely—from $326 to $18,823, suggesting high variability.
+- A few large diamonds (up to 5.01 carats) significantly increase the average price.
+- The increase in price with carat is non-linear—larger diamonds cost disproportionately more.
+---
+
+## Carat vs. Price Plot
+
+The following scatter plot illustrates the relationship between diamond carat weight and price. A scatter plot is useful here because it allows us to visually assess how price changes with carat, detect patterns or trends, and identify any potential outliers or clusters in the data.
+
+```{r}
+# Create scatter plot using ggplot2
+ggplot(diamonds, aes(x = carat, y = price)) +
+  geom_point(alpha = 0.3, color = "gold") +
+  labs(
+    title = "Diamond Price vs. Carat Weight",
+    x = "Carat",
+    y = "Price (USD)"
+  ) +
+  theme_minimal()
+```
+
+### Comments
+
+The scatter plot shows a strong, non-linear positive relationship between a diamond’s carat and its price. As carat increases, price rises rapidly, especially after 1.5–2 carats. This suggests that larger diamonds are significantly more expensive, not just proportionally, but exponentially, due to rarity and market demand.
