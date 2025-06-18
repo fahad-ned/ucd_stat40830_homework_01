@@ -69,7 +69,7 @@ The following scatter plot illustrates the relationship between diamond carat we
 ```{r}
 # Create scatter plot using ggplot2
 ggplot(diamonds, aes(x = carat, y = price)) +
-  geom_point(alpha = 0.3, color = "gold") +
+  geom_point(alpha = 0.3, color = "cyan") +
   labs(
     title = "Diamond Price vs. Carat Weight",
     x = "Carat",
